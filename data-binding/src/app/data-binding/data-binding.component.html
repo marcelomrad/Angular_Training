@@ -1,0 +1,98 @@
+<section>
+    <article>
+        <h3>
+            Interpolaçao
+        </h3>
+        <p>Nome feito com interpolação {{ name }}</p>
+        <p>1 + 1 = {{ 1 + 1 }} </p>
+        <P>1+ 1 não é = {{ 1 + 1+ getValor() }} </P>
+    </article>
+
+    <article>
+        <h3>
+            Property Binding
+        </h3>
+        <img [src]="urlImagem" [alt]="descricaoImagem">
+    </article>
+
+    <article>
+        <h3>Class e Style Binding</h3>
+        <div>
+            <select #option (change)="0">
+                <option value="success">Sucesso</option>
+                <option value="warning">Aviso</option>
+                <option value="danger">Perigo</option>
+            </select>
+        </div>
+        <br><br>
+
+        <ngb-alert [type]="option.value">
+            <strong>Atenção!</strong> Este é um alerta de {{ option.value }}
+        </ngb-alert>
+
+    </article>
+</section>
+
+
+<section>
+    <article>
+        <h3>Event Binding</h3>
+        <div>
+            <button (click)="onClick()" class="btn btn-primary">
+                Me clique
+            </button>
+            <br><br>
+
+            <input type="text" (keyup)="onKeyUp($event)" (keyup.enter)="onKeyUpEnter($event)" />
+            <p>ValorAtual: {{ valorAtual }} </p>
+            <p>ValorEnter: {{ valorSalvo }} </p>
+
+            <br>
+
+            <span (mouseover)=" onMouseOverOut()" 
+                (mouseout)=" onMouseOverOut()" 
+                [class.destaque]="isMouseOver"
+            >
+            Passe o mouse sobre mim
+            </span>
+
+        </div>
+    </article>
+
+</section>
+
+<section>
+    <article>
+        <h3>Two-way Data Binding</h3>
+        <div>
+            <input type="text" 
+            [(ngModel)]="nome"
+            />
+            <p>Nome: {{ nome }}</p>
+        </div>
+
+        <div>
+            <input type="text" [(ngModel)]="pessoa.nome">
+            <input type="text" [(ngModel)]="pessoa.idade" >
+
+            <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos</p>
+        </div>
+    </article>
+</section>
+
+
+<section>
+    <article>
+        <h3>Input/Output Properties</h3>
+        <app-curso [nome]="nomeCurso"></app-curso>
+
+        se o valor for do tipo "any" no component eu posso passar ele sem [], mas caso seja do tipo number devo passar como [valor]
+        <!-- <app-output-property valor="25"></app-output-property>  -->
+        <app-output-property [valor]="25"
+       (mudouValor)="onMudouValor($event)"
+        ></app-output-property> 
+        <div>
+            <p>Valor do contador final : {{ novoValor }} </p>
+        </div>
+    </article>
+</section>
